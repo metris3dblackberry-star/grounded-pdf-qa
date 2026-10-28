@@ -1,0 +1,26 @@
+{"id": "a01", "category": "answerable", "question": "What is the social security wage base for 2026?", "expected_doc": "irs-p15", "expected_pages": [2, 22, 29, 30, 40], "must_contain": ["184,500"]}
+{"id": "a02", "category": "answerable", "question": "What is the standard mileage rate for business use of a car in 2025?", "expected_doc": "irs-p463", "expected_pages": [1, 20, 34, 44, 45, 46], "must_contain": ["70 cents|0.70"]}
+{"id": "a03", "category": "answerable", "question": "How much employer-provided educational assistance can be excluded from an employee's income?", "expected_doc": "irs-p15b", "expected_pages": [2, 6, 12], "must_contain": ["5,250"]}
+{"id": "a04", "category": "answerable", "question": "Under the simplified method for the home office deduction, what is the rate and the maximum area?", "expected_doc": "irs-p587", "expected_pages": [10, 11, 12, 25, 27, 28], "must_contain": ["300 square feet|300 sq", "$5"]}
+{"id": "a05", "category": "answerable", "question": "How much can I deduct for a business gift to a client?", "expected_doc": "irs-p463", "expected_pages": [16], "must_contain": ["$25"]}
+{"id": "a06", "category": "answerable", "question": "What are the limits for excluding employee achievement awards?", "expected_doc": "irs-p15b", "expected_pages": [6, 8, 9], "must_contain": ["1,600", "400"]}
+{"id": "a07", "category": "answerable", "question": "What is the FUTA tax rate for 2026 and on how much of each employee's wages does it apply?", "expected_doc": "irs-p15", "expected_pages": [44], "must_contain": ["6.0%|6%", "7,000"]}
+{"id": "a08", "category": "answerable", "question": "What percentage of business meal expenses can I usually deduct?", "expected_doc": "irs-p463", "expected_pages": null, "must_contain": ["50%"]}
+{"id": "a09", "category": "answerable", "question": "How do I know whether I am a monthly or semiweekly schedule depositor?", "expected_doc": "irs-p15", "expected_pages": [32, 33, 34, 41], "must_contain": ["50,000", "lookback"]}
+{"id": "a10", "category": "answerable", "question": "How do I get an employer identification number?", "expected_doc": "irs-p583", "expected_pages": [4], "must_contain": ["SS-4|IRS.gov/EIN|online"]}
+{"id": "a11", "category": "answerable", "question": "What is the self-employment tax rate?", "expected_doc": "irs-p334", "expected_pages": [10, 43], "must_contain": ["15.3%"]}
+{"id": "a12", "category": "answerable", "question": "How long do I have to keep employment tax records?", "expected_doc": "irs-p583", "expected_pages": [16], "must_contain": ["4 years"]}
+{"id": "a13", "category": "answerable", "question": "When must an employer start withholding Additional Medicare Tax?", "expected_doc": "irs-p15", "expected_pages": [22, 30, 41, 46], "must_contain": ["200,000"]}
+{"id": "a14", "category": "answerable", "question": "What is the maximum section 179 deduction for 2025?", "expected_doc": "irs-p334", "expected_pages": [36, 42], "must_contain": ["2,500,000"]}
+{"id": "a15", "category": "answerable", "question": "What is the Medicare tax rate for employers and employees?", "expected_doc": "irs-p15", "expected_pages": [2], "must_contain": ["1.45%"]}
+{"id": "a16", "category": "answerable", "question": "Which areas does the CISA Cyber Essentials Starter Kit ask small businesses to focus on?", "expected_doc": "cisa-starter-kit", "expected_pages": null, "must_contain": ["staff", "data", "crisis"]}
+{"id": "a17", "category": "answerable", "question": "According to CISA, what kinds of threat actors increasingly target managed service providers?", "expected_doc": "cisa-msp-smb", "expected_pages": [1], "must_contain": ["state-sponsored|advanced persistent threat|APT"]}
+{"id": "a18", "category": "answerable", "question": "What are the exceptions to the exclusive use rule for a home office?", "expected_doc": "irs-p587", "expected_pages": null, "must_contain": ["daycare|day care|day-care", "inventory"]}
+{"id": "a19", "category": "answerable", "question": "Which form do employers use to report FUTA tax?", "expected_doc": "irs-p15", "expected_pages": null, "must_contain": ["940"]}
+{"id": "a20", "category": "answerable", "question": "Can I deduct a home office that I also use as a guest bedroom?", "expected_doc": "irs-p587", "expected_pages": null, "must_contain": ["exclusive"]}
+{"id": "u01", "category": "unanswerable", "question": "What is the corporate tax rate in Germany?"}
+{"id": "u02", "category": "unanswerable", "question": "How do I reset my iPhone password?"}
+{"id": "u03", "category": "unanswerable", "question": "What is the minimum wage in California?"}
+{"id": "u04", "category": "unanswerable", "question": "Which accounting software is best for a small business?"}
+{"id": "u05", "category": "unanswerable", "question": "How large are GDPR fines for a data breach?"}
+{"id": "u06", "category": "unanswerable", "question": "What is the standard mileage rate for 2027?"}

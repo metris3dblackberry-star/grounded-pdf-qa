@@ -1,0 +1,10 @@
+[
+  {"file": "irs-p15-employers-tax-guide.pdf", "id": "irs-p15", "title": "IRS Publication 15 (2026), Employer's Tax Guide", "source": "https://www.irs.gov/pub/irs-pdf/p15.pdf"},
+  {"file": "irs-p15b-fringe-benefits.pdf", "id": "irs-p15b", "title": "IRS Publication 15-B (2026), Employer's Tax Guide to Fringe Benefits", "source": "https://www.irs.gov/pub/irs-pdf/p15b.pdf"},
+  {"file": "irs-p334-small-business-tax-guide.pdf", "id": "irs-p334", "title": "IRS Publication 334 (2025), Tax Guide for Small Business", "source": "https://www.irs.gov/pub/irs-pdf/p334.pdf"},
+  {"file": "irs-p463-travel-gift-car-expenses.pdf", "id": "irs-p463", "title": "IRS Publication 463 (2025), Travel, Gift, and Car Expenses", "source": "https://www.irs.gov/pub/irs-pdf/p463.pdf"},
+  {"file": "irs-p583-starting-a-business.pdf", "id": "irs-p583", "title": "IRS Publication 583 (12-2024), Starting a Business and Keeping Records", "source": "https://www.irs.gov/pub/irs-pdf/p583.pdf"},
+  {"file": "irs-p587-business-use-of-home.pdf", "id": "irs-p587", "title": "IRS Publication 587 (2025), Business Use of Your Home", "source": "https://www.irs.gov/pub/irs-pdf/p587.pdf"},
+  {"file": "cisa-cyber-essentials-starter-kit.pdf", "id": "cisa-starter-kit", "title": "CISA Cyber Essentials Starter Kit", "source": "https://www.cisa.gov/sites/default/files/publications/Cyber%20Essentials%20Starter%20Kit_03.12.2021_508_0.pdf"},
+  {"file": "cisa-guidance-msps-and-smbs.pdf", "id": "cisa-msp-smb", "title": "CISA Insights: Guidance for MSPs and Small and Mid-sized Businesses", "source": "https://www.cisa.gov/sites/default/files/publications/CISA%20Insights_Guidance-for-MSPs-and-Small-and-Mid-sized-Businesses_S508C.pdf"}
+]
