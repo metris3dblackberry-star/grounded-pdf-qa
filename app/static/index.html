@@ -98,6 +98,13 @@
   .how ol { padding-left: 18px; margin: 0; color: var(--muted); font-size: 13px; }
   .how li { margin-bottom: 6px; }
   .how b { color: var(--text); font-weight: 600; }
+  .intro h3.group { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 16px 0 8px; }
+  .group-note { font-size: 13px; margin: -4px 0 8px !important; }
+  .chip.trap { border-style: dashed; }
+  button.back { border: 1px solid var(--line); border-radius: 10px; padding: 0 12px; background: var(--bg); color: var(--text);
+                font: inherit; font-size: 13px; cursor: pointer; white-space: nowrap; }
+  button.back:hover { border-color: var(--accent); color: var(--accent); }
+  button.back[hidden] { display: none; }
 </style>
 </head>
 <body>
@@ -118,10 +125,15 @@
       <div class="intro">
         <h2>Ask the small-business help desk</h2>
         <p>The knowledge base holds IRS small-business tax guides and CISA cybersecurity guides. Every answer cites the document and page it came from. If the documents don't cover a question, the assistant says so instead of guessing.</p>
+        <h3 class="group">Answered from the documents</h3>
         <div class="examples" id="examples"></div>
+        <h3 class="group">Not in the documents: watch it decline</h3>
+        <p class="group-note">Trick questions. A trustworthy bot says "not in the documents" instead of guessing.</p>
+        <div class="examples" id="traps"></div>
       </div>
     </div>
     <form id="form">
+      <button class="back" id="back" type="button" hidden title="Back to the example questions">&larr; Examples</button>
       <textarea id="q" rows="1" maxlength="500" placeholder="Ask a question about the documents…" aria-label="Question"></textarea>
       <button class="send" id="send" type="submit">Ask</button>
     </form>
@@ -151,13 +163,20 @@ const EXAMPLES = [
   "How do I get an employer identification number?",
   "What is the standard mileage rate for business use of a car?",
   "Are employee achievement awards taxable?",
-  "What should a small business do to protect against ransomware?",
-  "What is the corporate tax rate in Germany?"
+  "What should a small business do to protect against ransomware?"
+];
+const TRAPS = [
+  "What is the standard mileage rate for 2027?",
+  "What is the corporate tax rate in Germany?",
+  "What is the minimum wage in California?",
+  "How do I reset my iPhone password?"
 ];
 const log = document.getElementById("log");
 const form = document.getElementById("form");
 const input = document.getElementById("q");
 const send = document.getElementById("send");
+const back = document.getElementById("back");
+const intro = document.querySelector(".intro");
 let turn = 0;
 
 function el(tag, attrs = {}, ...children) {
@@ -170,6 +189,17 @@ function el(tag, attrs = {}, ...children) {
 }
 
 for (const q of EXAMPLES) document.getElementById("examples").append(el("button", { class: "chip", type: "button", onclick: () => ask(q) }, q));
+for (const q of TRAPS) document.getElementById("traps").append(el("button", { class: "chip trap", type: "button", onclick: () => ask(q) }, q));
+
+function showExamples() {
+  // Clear the conversation and bring back the example questions.
+  if (send.disabled) return;
+  log.replaceChildren(intro);
+  back.hidden = true;
+  log.scrollTop = 0;
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+back.addEventListener("click", showExamples);
 
 function renderAnswer(text, prefix) {
   // Turn "[2]" markers into buttons that highlight the matching source card. Text is never parsed as HTML.
@@ -228,7 +258,8 @@ function renderBot(data) {
 async function ask(question) {
   question = question.trim();
   if (!question || send.disabled) return;
-  document.querySelector(".intro")?.remove();
+  intro.remove();
+  back.hidden = false;
   log.append(el("div", { class: "msg-user" }, question));
   const pending = el("div", { class: "msg-bot thinking" }, "Searching the documents…");
   log.append(pending);
