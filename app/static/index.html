@@ -34,7 +34,18 @@
   .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--no); margin-right: 6px; }
   .dot.ok { background: var(--ok); }
   main { max-width: 1180px; margin: 0 auto; padding: 16px; display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 16px; }
-  @media (max-width: 900px) { main { grid-template-columns: 1fr; } aside { order: 2; } }
+  @media (max-width: 900px) { main { grid-template-columns: minmax(0, 1fr); } aside { order: 2; } }
+  @media (max-width: 600px) {
+    main { padding: 10px; gap: 10px; }
+    #log { padding: 14px; }
+    #chat { min-height: calc(100svh - 100px); }
+    .tag { display: none; }
+    .msg-user { max-width: 90%; }
+    textarea { font-size: 16px; } /* avoids iOS zoom on focus */
+    button.send { padding: 0 14px; }
+  }
+  .chip { max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
+  .answer, .src, details p { overflow-wrap: anywhere; }
   .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
   #chat { display: flex; flex-direction: column; min-height: calc(100vh - 110px); }
   #log { flex: 1; padding: 18px; display: flex; flex-direction: column; gap: 18px; overflow-y: auto; }

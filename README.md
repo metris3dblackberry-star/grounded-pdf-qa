@@ -2,6 +2,8 @@
 
 A retrieval-augmented chatbot that answers **only** from its PDF documents, cites the **document and page** behind every statement, and says *"not in the documents"* instead of guessing.
 
+**Live demo: [demo.registless.ai](https://demo.registless.ai)** (limited to 100 questions per day).
+
 The demo knowledge base is a small-business help desk: six IRS small-business tax guides and two CISA cybersecurity guides (296 pages, public-domain US government works). Swap in your own PDFs and re-run one command.
 
 ![Answer with page-level citations and verification badges](docs/screenshot-answer.jpg)
@@ -79,7 +81,7 @@ To use your own documents, put PDFs in `data/pdfs/`, optionally add titles in `d
 | `GET` | `/api/health` | Index status |
 | `GET` | `/pdfs/{file}#page=N` | The source PDF, opened at the cited page |
 
-Questions are limited to 500 characters and 20 per IP address per 10 minutes.
+Questions are limited to 500 characters and 20 per IP address per 10 minutes. A public deployment can also set a daily total with `DAILY_LIMIT`.
 
 ## Evaluation and tests
 

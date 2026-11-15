@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import os
 import time
 from collections import defaultdict, deque
 from contextlib import asynccontextmanager
@@ -22,6 +23,11 @@ log = logging.getLogger("uvicorn.error")
 STATIC = Path(__file__).parent / "static"
 RATE_LIMIT = 20  # questions
 RATE_WINDOW = 600  # seconds, per client IP
+# Total questions per UTC day across all visitors (0 = no cap). Protects the API budget
+# of a public deployment.
+DAILY_LIMIT = int(os.getenv("DAILY_LIMIT", "0") or 0)
+# Behind Cloudflare the socket peer is the tunnel; the visitor's IP is in this header.
+TRUST_CF_HEADER = os.getenv("TRUST_CF_HEADER", "0") == "1"
 
 
 class ChatRequest(BaseModel):
@@ -30,6 +36,7 @@ class ChatRequest(BaseModel):
 
 rag: RAG | None = None
 _requests: dict[str, deque] = defaultdict(deque)
+_daily = {"day": "", "count": 0}
 
 
 def get_rag() -> RAG:
@@ -61,6 +68,24 @@ def _rate_limited(ip: str) -> bool:
     return False
 
 
+def _daily_cap_reached() -> bool:
+    if DAILY_LIMIT <= 0:
+        return False
+    day = time.strftime("%Y-%m-%d", time.gmtime())
+    if _daily["day"] != day:
+        _daily.update(day=day, count=0)
+    if _daily["count"] >= DAILY_LIMIT:
+        return True
+    _daily["count"] += 1
+    return False
+
+
+def _client_ip(request: Request) -> str:
+    if TRUST_CF_HEADER and request.headers.get("cf-connecting-ip"):
+        return request.headers["cf-connecting-ip"]
+    return request.client.host if request.client else "unknown"
+
+
 @app.get("/api/health")
 def health() -> dict:
     count = get_rag().store.count()
@@ -74,9 +99,10 @@ def documents() -> list[dict]:
 
 @app.post("/api/chat")
 def chat(body: ChatRequest, request: Request) -> dict:
-    ip = request.client.host if request.client else "unknown"
-    if _rate_limited(ip):
+    if _rate_limited(_client_ip(request)):
         raise HTTPException(429, "Too many questions. Please wait a few minutes.")
+    if _daily_cap_reached():
+        raise HTTPException(429, "The demo has reached its daily question limit. Please try again tomorrow.")
     r = get_rag()
     if r.store.count() == 0:
         raise HTTPException(503, "The index is empty. Run `python -m app.ingest` first.")
